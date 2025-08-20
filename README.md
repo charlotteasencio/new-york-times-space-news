@@ -12,7 +12,7 @@
 
 ## Run Application on Local Machine
 1) Clone code from the repository
-2) Add a .env file at the root of the project with the provided api key as REACT_APP_NYT_API_KEY=<provided-api-key>
+2) Add a `.env` file at the root of the project with the provided api key as `REACT_APP_NYT_API_KEY=<provided-api-key>`
 3) Run `npm i` to install necessary packages
 4) Run `npm start` to start local host
 

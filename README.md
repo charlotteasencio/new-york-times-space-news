@@ -18,3 +18,4 @@
 3) Run `npm start` to start local host
 
 ## Live Demo
+[Demo]("https://charlotteasencio.github.io/new-york-times-space-news")

@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/new-york-times-space-news/static/css/main.6db5bcfc.css",
+    "main.js": "/new-york-times-space-news/static/js/main.03eeecdd.js",
+    "static/media/image-not-found.png": "/new-york-times-space-news/static/media/image-not-found.8788b8592eb19cfe0731.png",
+    "index.html": "/new-york-times-space-news/index.html",
+    "main.6db5bcfc.css.map": "/new-york-times-space-news/static/css/main.6db5bcfc.css.map",
+    "main.03eeecdd.js.map": "/new-york-times-space-news/static/js/main.03eeecdd.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6db5bcfc.css",
+    "static/js/main.03eeecdd.js"
+  ]
+}

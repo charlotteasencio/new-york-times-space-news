@@ -1,7 +1,6 @@
 # Space Flight News Articles
 * An app that displays articles about space from the New York Times Search Articles API. It also displays further information about those articles and links to them.
 
-
 ## Built With
 * React
 * TypeScript
@@ -19,3 +18,5 @@
 ## Run Tests
 * Run full test suite once: `npm test -- --watchAll=false`
 * Run in watch mode: `npm test`
+
+**Note: The NYT API has a rate limit of 10 requests per minute, it will give an error if more than 10 requests per minute are made**

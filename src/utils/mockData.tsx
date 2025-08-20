@@ -1,52 +1,89 @@
-import { Author, NewsArticle } from "../utils/types";
+import { NewsArticle } from "./types"
 
-export const MockAuthors: Author[] = [
-    { name: "Author 1", socials: { instagram: "https://instagram.com/author1" } },
-    { name: "Author 2", socials: { x: "https://x.com/author2", youtube: "https://youtube.com/author2" } },
-]
+const mockByline = {
+    original: "By Test"
+}
 
-export const mockArticle: NewsArticle = {
-    authors: MockAuthors,
-    featured: false,
-    id: 1,
-    image_url: "https://example.com/image2.jpg",
-    news_site: "test news site 1",
-    published_at: "2023-01-02T00:00:00Z",
-    summary: "short summary of test article 1",
-    title: "Test Article 1",
-    updated_at: "",
-    url: "https://example.com/article1",
-    events: [],
-    launches: [],
+const mockByline2 = {
+    original: "By Test 2"
+}
+
+const mockHeadline = {
+    kicker: "",
+    main: "Test Headline",
+    print_headline: "",
+}
+
+const mockHeadline2 = {
+    kicker: "test",
+    main: "Test Headline 2",
+    print_headline: "",
+}
+
+const mockDefault = {
+    height: 300,
+    url: "testimageurl",
+    width: 300
+}
+
+const mockThumbnail = {
+    height: 100,
+    url: "testimageurlthumbnail",
+    width: 100
+}
+
+const mockMultiMedia = {
+    caption: "test caption",
+    credit: "test credit",
+    default: mockDefault,
+    thumbnail: mockThumbnail,
+}
+
+export const mockArticle1: NewsArticle = {
+    abstract: "test abstract",
+    byline: mockByline,
+    document_type: "article",
+    headline: mockHeadline,
+    keywords: [],
+    multimedia: mockMultiMedia,
+    news_desk: "nytimes desk",
+    print_page: "print page",
+    print_section: "section 1",
+    pub_date: "2025-07-24T02:25:40Z",
+    section_name: "section 1",
+    snippet: "test snippet",
+    source: "nytimes",
+    subsection_name: "subsection 2",
+    type_of_material: "article",
+    uri: "testuri",
+    web_url: "testurl",
+    word_count: 231,
+    _id: "nyt://test/12jsdbfkj37skkjdft6"
+}
+
+export const mockArticle2: NewsArticle = {
+    abstract: "test abstract 2",
+    byline: mockByline2,
+    document_type: "article 2",
+    headline: mockHeadline2,
+    keywords: [],
+    multimedia: mockMultiMedia,
+    news_desk: "nytimes desk",
+    print_page: "print page",
+    print_section: "section 2",
+    pub_date: "2025-07-24T02:25:40Z",
+    section_name: "section 1",
+    snippet: "test snippet 2",
+    source: "nytimes",
+    subsection_name: "subsection 4",
+    type_of_material: "article",
+    uri: "testuri",
+    web_url: "testurl",
+    word_count: 765,
+    _id: "nyt://test/jh298ghl2396sh"
 }
 
 export const mockArticles: NewsArticle[] = [
-    {
-        authors: [],
-        featured: false,
-        id: 1,
-        image_url: "https://example.com/image2.jpg",
-        news_site: "test news site 1",
-        published_at: "2023-01-02T00:00:00Z",
-        summary: "short summary of test article 1",
-        title: "Test Article 1",
-        updated_at: "",
-        url: "https://example.com/article1",
-        events: [],
-        launches: [],
-    },
-    {
-        authors: [],
-        featured: false,
-        id: 2,
-        image_url: "https://example.com/image4.jpg",
-        news_site: "test news site 2",
-        published_at: "2023-01-02T00:00:00Z",
-        summary: "short summary of test article 2",
-        title: "Test Article 2",
-        updated_at: "",
-        url: "https://example.com/article2",
-        events: [],
-        launches: [],
-    },
+    { ...mockArticle1 },
+    { ...mockArticle2 }
 ];

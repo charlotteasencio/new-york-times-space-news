@@ -10,7 +10,7 @@ export default function NewsArticlesGrid() {
     const [loading, setLoading] = useState(false);
     const [loadingMore, setLoadingMore] = useState(false);
     const [error, setError] = useState<Error | null>(null);
-    const [nextUrl, setNextUrl] = useState<string | null>(null);
+    const [page, setPage] = useState(1)
     const targetRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -18,12 +18,11 @@ export default function NewsArticlesGrid() {
             setLoading(true);
             try {
                 // articles are being fetched from the Space Flight news API: https://www.spaceflightnewsapi.net/
-                // the first 8 articles are fetched and the remaining articles are fetched on scroll
-                const response = await fetch('https://api.spaceflightnewsapi.net/v4/articles/?limit=8');
+                // the first 10 articles are fetched and the remaining articles are fetched on scroll
+                const response = await fetch(`https://api.nytimes.com/svc/search/v2/articlesearch.json?q=space&page=1&api-key=jXZ0xRtYFkpoqJGuaf1vzBamjMh5ZW4B`);
                 const data = await response.json();
-                setArticles(data.results);
-                //set the next URL from the data response so that we can fetch next round of articles on scroll
-                setNextUrl(data.next);
+                setArticles(data.response.docs);
+                setPage((prev) => prev + 1)
             } catch (err) {
                 setError(err as Error)
             } finally {
@@ -35,24 +34,22 @@ export default function NewsArticlesGrid() {
 
     //if this fetch pattern is going to be used in other places, we could extract into the custom hook
     const fetchMoreArticles = useCallback(async () => {
-        if (!nextUrl || loadingMore || loading) return;
         setLoadingMore(true);
         try {
-            const response = await fetch(nextUrl);
+            const response = await fetch(`https://api.nytimes.com/svc/search/v2/articlesearch.json?q=space&page=${page}&api-key=jXZ0xRtYFkpoqJGuaf1vzBamjMh5ZW4B`);
             const data = await response.json();
-            setArticles((prevArticles) => [...prevArticles, ...data.results]);
-            //set the next URL from the data response so that we can fetch next round of articles on scroll
-            setNextUrl(data.next);
+            setArticles((prevArticles) => [...prevArticles, ...data.response.docs]);
+            setPage((prev) => prev + 1)
         } catch (err) {
             setError(err as Error);
         } finally {
             setLoadingMore(false);
         }
-    }, [nextUrl, loadingMore, loading]);
+    }, [page]);
 
     useEffect(() => {
         const observer = new IntersectionObserver((entries) => {
-            if (entries[0].isIntersecting) {
+            if (entries[0].isIntersecting && articles.length > 0) {
                 fetchMoreArticles();
             }
         });
@@ -69,7 +66,7 @@ export default function NewsArticlesGrid() {
             };
             observer.disconnect();
         };
-    }, [fetchMoreArticles]);
+    }, [fetchMoreArticles, articles.length]);
 
     if (error) {
         return <div className="text-center w-full h-screen">Error loading articles: {error.message}</div>;
@@ -89,7 +86,7 @@ export default function NewsArticlesGrid() {
         <GridLayout>
             {articles.map((article) => {
                 return (
-                    <NewsArticlesCard article={article} key={article.id} />
+                    <NewsArticlesCard article={article} key={article._id} />
                 );
             })}
             <div ref={targetRef}></div>

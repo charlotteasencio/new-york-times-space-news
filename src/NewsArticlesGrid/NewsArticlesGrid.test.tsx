@@ -9,7 +9,7 @@ beforeEach(() => {
 
 describe("NewsArticlesGrid", () => {
     it("renders articles after fetching", async () => {
-        fetchMock.mockResponseOnce(JSON.stringify({ results: mockArticles }));
+        fetchMock.mockResponseOnce(JSON.stringify({ response: { docs: mockArticles } }));
 
         render(
             <BrowserRouter>
@@ -22,10 +22,10 @@ describe("NewsArticlesGrid", () => {
         expect(loadedSkeletons.length).toBeGreaterThan(0);
 
         // Check that first article is present
-        expect(await screen.findByText("Test Article 1")).toBeInTheDocument();
+        expect(await screen.findByText("Test Headline")).toBeInTheDocument();
 
         // Check that second article is present
-        expect(await screen.findByText("Test Article 2")).toBeInTheDocument();
+        expect(await screen.findByText("Test Headline 2")).toBeInTheDocument();
 
         //Check that the correct number of articles are rendered
         const cards = screen.getAllByRole("img");

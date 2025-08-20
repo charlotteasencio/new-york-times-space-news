@@ -1,38 +1,50 @@
-export type Socials = {
-    bluesky?: string;
-    instagram?: string;
-    linkedin?: string;
-    mastodon?: string;
-    x?: string;
-    youtube?: string;
-}
-
-export type Author = {
+type Keywords = {
     name: string;
-    socials: Socials;
-};
-
-type Launches = {
-    launch_id: string;
-    provider: string;
+    rank: number;
+    value: string;
 }
 
-type Event = {
-    event_id: string;
-    provider: string;
+type Byline = {
+    original: string,
+}
+
+type Headline = {
+    kicker: string;
+    main: string;
+    print_headline: string;
+}
+
+type MultiMediaImages = {
+    height: number;
+    url: string;
+    width: number;
+}
+
+type MultiMedia = {
+    caption: string;
+    credit: string;
+    default: MultiMediaImages;
+    thumbnail: MultiMediaImages;
 }
 
 export type NewsArticle = {
-    authors: Author[];
-    events: Event[];
-    featured: boolean
-    id: number;
-    image_url: string;
-    launches: Launches[];
-    news_site: string;
-    published_at: string;
-    summary: string;
-    title: string;
-    updated_at: string;
-    url: string;
+    abstract: string;
+    byline: Byline;
+    document_type: string,
+    headline: Headline;
+    keywords: Keywords[];
+    multimedia: MultiMedia;
+    news_desk: string;
+    print_page: string;
+    print_section: string;
+    pub_date: string;
+    section_name: string;
+    snippet: string;
+    source: string;
+    subsection_name: string;
+    type_of_material: string;
+    uri: string;
+    web_url: string;
+    word_count: number;
+    _id: string
 };

@@ -18,6 +18,7 @@ export default function NewsArticlesCard({ article }: Props) {
                     <p className="overflow-hidden text-medium line-clamp-3 font-light">{article.abstract}</p>
                 </div>
                 <div className="flex justify-end flex-shrink-0">
+                    {/* encoding the _id to make it useable in the URL */}
                     <LinkButton path={`/details/${encodeURIComponent(article._id)}`}>View More</LinkButton>
                 </div>
             </div>
